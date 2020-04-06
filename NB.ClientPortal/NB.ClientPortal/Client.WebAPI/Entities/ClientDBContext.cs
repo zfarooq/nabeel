@@ -15,7 +15,11 @@ namespace Client.WebAPI.Entities
 		protected override void OnModelCreating(ModelBuilder modelBuilder)
 		{
 			modelBuilder.Entity<User>().ToTable("Users");
+			modelBuilder.Entity<Role>().ToTable("Roles");
+			modelBuilder.Entity<Client>().ToTable("Clients");
 		}
 		public DbSet<User> User { get; set; }
+		public DbSet<Role> Role { get; set; }
+		public DbSet<Client> Client { get; set; }
 	}
 }

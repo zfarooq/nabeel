@@ -16,7 +16,7 @@ namespace Client.WebAPI.Repositories
 		}
 		public async Task<User> GetById(int Id)
 		{
-			return await this.context.Set<User>().FindAsync(Id);
+			return await this.context.Set<User>().Include(x => x.Role).FirstOrDefaultAsync(x => x.Id == Id);
 		}
 		public async Task<User> GetUserByUserName(string userName, string password)
 		{
@@ -25,7 +25,7 @@ namespace Client.WebAPI.Repositories
 		}
 		public async Task<IList<User>> GetAll()
 		{
-			return await this.context.Set<User>().ToListAsync();
+			return await this.context.Set<User>().Include(x => x.Role).ToListAsync();
 		}
 
 		public async Task<User> Add(User user)
